@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Elearning/Elearning.vcxproj" Id="c519d319-d62b-4a3b-9bf2-fd04e612c763" />
+</Solution>
