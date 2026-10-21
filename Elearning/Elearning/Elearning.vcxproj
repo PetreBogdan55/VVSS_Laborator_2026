@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalIncludeDirectories>IntegrationLayer/Logger;Utils;EntityLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>IntegrationLayer/Database;IntegrationLayer/Environment;IntegrationLayer/Logger;Utils;EntityLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,6 +140,8 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="IntegrationLayer\Database\Database.cpp" />
+    <ClCompile Include="IntegrationLayer\Environment\Environment.cpp" />
     <ClCompile Include="IntegrationLayer\Logger\Logger.cpp" />
     <ClCompile Include="IntegrationLayer\Logger\LoggerSingleton.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,14 +149,20 @@
     <ClCompile Include="EntityLayer\Student.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IntegrationLayer\Database\Database.h" />
     <ClInclude Include="EntityLayer\User.h" />
     <ClInclude Include="EntityLayer\Student.h" />
+    <ClInclude Include="IntegrationLayer\Environment\Environment.h" />
     <ClInclude Include="IntegrationLayer\Logger\Logger.h" />
     <ClInclude Include="IntegrationLayer\Logger\LoggerSingleton.h" />
     <ClInclude Include="Utils\pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include=".env" />
     <Text Include="log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RepositoryLayer\StudentRepositoryLayer\.env" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

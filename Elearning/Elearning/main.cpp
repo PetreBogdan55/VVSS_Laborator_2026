@@ -1,5 +1,7 @@
 #include "LoggerSingleton.h"
 #include "Student.h"
+#include "Environment.h"
+#include "Database.h"
 
 int main()
 {
@@ -29,6 +31,16 @@ int main()
 	LoggerSingleton::getLoggerInstance()->log("Eroare", Logger::Level::Warning);
 	LoggerSingleton::getLoggerInstance()->log("Eroare", Logger::Level::Error);
 #pragma endregion
+
+	std::cout << Environment::getInstance()->getValue("API_KEY") << "\n";
+	std::string mssql_conn_string    = Environment::getInstance()->getValue("MSSQLSERVER_CONN_STRING");
+	std::string postgres_conn_string = Environment::getInstance()->getValue("POSTGRESQL_CONN_STRING");
+
+	Database mssql_database(mssql_conn_string);
+	std::cout << mssql_database.getIsConnected() << "\n";
+
+	Database postgresql_database(postgres_conn_string);
+	std::cout << postgresql_database.getIsConnected() << "\n";
 
 	return 0;
 }
