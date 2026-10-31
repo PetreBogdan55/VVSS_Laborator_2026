@@ -36,6 +36,9 @@
     <ClCompile Include="IntegrationLayer\Database\Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\pch.h">
@@ -59,12 +62,15 @@
     <ClInclude Include="IntegrationLayer\Database\Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\IStudentRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />
     <Text Include=".env" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RepositoryLayer\StudentRepositoryLayer\.env" />
   </ItemGroup>
 </Project>

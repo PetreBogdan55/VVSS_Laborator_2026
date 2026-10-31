@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalIncludeDirectories>IntegrationLayer/Database;IntegrationLayer/Environment;IntegrationLayer/Logger;Utils;EntityLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>RepositoryLayer/StudentRepositoryLayer;IntegrationLayer/Database;IntegrationLayer/Environment;IntegrationLayer/Logger;Utils;EntityLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="EntityLayer\User.cpp" />
     <ClCompile Include="EntityLayer\Student.cpp" />
+    <ClCompile Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IntegrationLayer\Database\Database.h" />
@@ -155,14 +156,13 @@
     <ClInclude Include="IntegrationLayer\Environment\Environment.h" />
     <ClInclude Include="IntegrationLayer\Logger\Logger.h" />
     <ClInclude Include="IntegrationLayer\Logger\LoggerSingleton.h" />
+    <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\IStudentRepository.h" />
+    <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.h" />
     <ClInclude Include="Utils\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".env" />
     <Text Include="log.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RepositoryLayer\StudentRepositoryLayer\.env" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

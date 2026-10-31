@@ -2,7 +2,13 @@
 #pragma once
 
 #define byte win_byte_override
+
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
 #include "Windows.h"
+#endif
 
 #include <sqlext.h> // ODBC
 #include <sqltypes.h> 
