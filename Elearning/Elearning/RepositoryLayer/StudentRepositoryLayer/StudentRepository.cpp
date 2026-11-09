@@ -32,6 +32,9 @@ void mecanismPerCazGeneral()
 	// Facem un IF (daca avem un singur rezultat)
 	// Facem un WHILE (daca avem mai multe)
 	// -> fetching din STMT pt datele extrase -> salvam
+
+	// 9. Eliberare memorie pentru STMT
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt); // inclusiv la orice return separat
 }
 
 void StudentRepository::deleteStudent(int id)
@@ -52,6 +55,7 @@ void StudentRepository::deleteStudent(int id)
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Invalid delete query", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return;
 	}
 
@@ -59,6 +63,7 @@ void StudentRepository::deleteStudent(int id)
 		&id, 0, nullptr);
 
 	ret = SQLExecute(stmt);
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Wrong delete query binding parameters", Logger::Level::Error);
@@ -71,14 +76,15 @@ void StudentRepository::addStudent(Student student)
 	if (!m_database.getIsConnected()) return;
 
 	SQLHANDLE stmt = m_database.getStmtHandle();
-	//SQLWCHAR query[] = L"{CALL dbo.AddStudent(?,?,?,?,?,?,?)}"; // MSSQL
-	SQLWCHAR query[] = L"CALL public.addstudent(?,?,?,?,?,?,?)"; // POSTGRES
+	SQLWCHAR query[] = L"{CALL dbo.AddStudent(?,?,?,?,?,?,?)}"; // MSSQL
+	//SQLWCHAR query[] = L"CALL public.addstudent(?,?,?,?,?,?,?)"; // POSTGRES
 
 	SQLRETURN ret;
 	ret = SQLPrepare(stmt, query, SQL_NTS);
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Invalid add query", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return;
 	}
 
@@ -113,6 +119,7 @@ void StudentRepository::addStudent(Student student)
 		0, 0, &studyYear, 0, nullptr);
 
 	ret = SQLExecute(stmt);
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Wrong add query binding parameters", Logger::Level::Error);
@@ -133,6 +140,7 @@ void StudentRepository::updateStudent(Student student)
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Invalid update query", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return;
 	}
 
@@ -173,8 +181,11 @@ void StudentRepository::updateStudent(Student student)
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Wrong update query binding parameters", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return;
 	}
+
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 }
 
 std::optional<Student> StudentRepository::getStudentByID(int id)
@@ -182,14 +193,15 @@ std::optional<Student> StudentRepository::getStudentByID(int id)
 	if (!m_database.getIsConnected()) return std::nullopt;
 
 	SQLHANDLE stmt = m_database.getStmtHandle();
-	//SQLWCHAR query[] = L"{CALL dbo.GetStudentById(?)}"; // MSSQL
-	SQLWCHAR query[] = L"SELECT * FROM public.getstudentbyid(?)"; // POSTGRES
+	SQLWCHAR query[] = L"{CALL dbo.GetStudentById(?)}"; // MSSQL
+	//SQLWCHAR query[] = L"SELECT * FROM public.getstudentbyid(?)"; // POSTGRES
 
 	SQLRETURN ret;
 	ret = SQLPrepare(stmt, query, SQL_NTS);
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Invalid get query", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return std::nullopt;
 	}
 
@@ -200,6 +212,7 @@ std::optional<Student> StudentRepository::getStudentByID(int id)
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Wrong get query binding parameters", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return std::nullopt;
 	}
 
@@ -229,8 +242,10 @@ std::optional<Student> StudentRepository::getStudentByID(int id)
 		student.setID(returned_id);
 		student.setStudyYear(studyYear);
 		student.setMatriculationNumber(std::string(matriculationNumber));
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return student;
 	}
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 	return std::nullopt;
 }
 
@@ -247,6 +262,7 @@ std::optional<std::vector<Student>> StudentRepository::getAllStudents()
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Invalid get query", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return std::nullopt;
 	}
 
@@ -254,6 +270,7 @@ std::optional<std::vector<Student>> StudentRepository::getAllStudents()
 	if (ret != SQL_SUCCESS)
 	{
 		LoggerSingleton::getLoggerInstance()->log("Wrong get query binding parameters", Logger::Level::Error);
+		SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 		return std::nullopt;
 	}
 
@@ -286,6 +303,7 @@ std::optional<std::vector<Student>> StudentRepository::getAllStudents()
 		student.setMatriculationNumber(std::string(matriculationNumber));
 		students.push_back(student);
 	}
+	SQLFreeHandle(SQL_HANDLE_STMT, stmt);
 	if (students.size() != 0)
 		return students;
 	return std::nullopt;

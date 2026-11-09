@@ -31,7 +31,7 @@ public:
 	bool getIsConnected() const;
 	SQLHANDLE getEnvHandle() const;
 	SQLHANDLE getConnHandle() const;
-	SQLHANDLE getStmtHandle() const;
+	SQLHANDLE getStmtHandle();
 	void setStmtHandle(const SQLHANDLE& stmtHandle);
 
 private:

@@ -110,8 +110,19 @@ SQLHANDLE Database::getConnHandle() const
     return m_sqlConnHandle;
 }
 
-SQLHANDLE Database::getStmtHandle() const
+SQLHANDLE Database::getStmtHandle()
 {
+    m_sqlStmtHandle = SQL_NULL_HANDLE;
+
+    SQLRETURN ret = SQLAllocHandle(
+        SQL_HANDLE_STMT,
+        m_sqlConnHandle,
+        &m_sqlStmtHandle
+    );
+
+    if (!SQL_SUCCEEDED(ret))
+        return SQL_NULL_HANDLE;
+
     return m_sqlStmtHandle;
 }
 
