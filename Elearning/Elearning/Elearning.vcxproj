@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -158,6 +158,7 @@
     <ClInclude Include="IntegrationLayer\Logger\LoggerSingleton.h" />
     <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\IStudentRepository.h" />
     <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.h" />
+    <ClInclude Include="Utils\Helper.h" />
     <ClInclude Include="Utils\pch.h" />
   </ItemGroup>
   <ItemGroup>

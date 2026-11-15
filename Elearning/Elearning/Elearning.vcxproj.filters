@@ -68,6 +68,9 @@
     <ClInclude Include="RepositoryLayer\StudentRepositoryLayer\StudentRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />
