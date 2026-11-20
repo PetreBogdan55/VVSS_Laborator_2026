@@ -1,0 +1,18 @@
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Nu s-a putut aloca STMT
+[ERROR]  [2026-11-18 15:30:38] - Adresa utilizatorului nu este completata
+[ERROR]  [2026-11-18 15:30:38] - Telefonul utilizatorului este invalid
+[ERROR]  [2026-11-18 15:30:38] - Numarul matricol nu poate fi gol
+[ERROR]  [2026-11-18 15:30:38] - Adresa utilizatorului nu este completata
+[ERROR]  [2026-11-18 15:30:38] - Telefonul utilizatorului este invalid
+[ERROR]  [2026-11-18 15:30:38] - Numarul matricol nu poate fi gol
+[ERROR]  [2026-11-18 15:30:38] - Adresa utilizatorului nu este completata
+[ERROR]  [2026-11-18 15:30:38] - Telefonul utilizatorului este invalid
+[ERROR]  [2026-11-18 15:30:38] - Numarul matricol nu poate fi gol
+[ERROR]  [2026-11-18 15:30:38] - Adresa utilizatorului nu este completata
+[ERROR]  [2026-11-18 15:30:38] - Telefonul utilizatorului este invalid
+[ERROR]  [2026-11-18 15:30:38] - Numarul matricol nu poate fi gol
